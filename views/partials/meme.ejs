@@ -1,0 +1,30 @@
+
+
+<section class="container">
+    <input type="text" id="myInput" placeholder="Search for meme names...">
+    <input type="submit" id="myBtn" value="Search"  onclick="searchFunction()">
+    
+    <table class="table" id="myTable">
+      <thead>
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">Name</th>
+          <th id="guest" scope="col">Details</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% memes.forEach(function(meme){ %>
+        <tr id="guest">
+          <td scope="row"><img class="mb-3" src="<%=meme.url%>" alt="memes"></td>
+          <td scope="row" id="name"><%=meme.name%></td>
+          <% if (!user) { %>
+          <td scope="row"><button id="guest" class="guest" >Details</button></td>
+          <% }%>
+          <% if (user) { %>
+          <td scope="row"><button id="guest" onclick="open_new_window()">Details</button></td>
+          <% }%>
+        </tr>
+        <% });%>
+      </tbody>
+    </table>
+  </section>

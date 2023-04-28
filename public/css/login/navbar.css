@@ -1,0 +1,23 @@
+section {
+    padding-top: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+li {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-weight: 1000;
+    color: solid black;
+}
+
+#logo {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+}
+
+#logo:hover {
+    box-shadow: 0 0 2px 1px black;
+  }
+
+

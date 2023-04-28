@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Meme Overwiew Details</title>
+  <!-- css -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/memeDetails/navbar.css" rel="stylesheet">
+  <link href="../css/memeDetails/memeDetails.css" rel="stylesheet">
+</head>
+
+<body class="position-relative" data-bs-spy="scroll">
+  <%- include('./partials/navbar.ejs', {user: user}) %>
+    <div data-spy="scroll" data-target="#navbar" data-offset="0">
+      <section class="container">
+        <%- include('./partials/memes.ejs', {memes: memes}) %>
+    </div>
+      </section>
+  <%- include('./partials/scripts.ejs') %>
+</body>
+<script>
+
+
+</script>
+</html>

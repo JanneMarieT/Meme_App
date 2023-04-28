@@ -1,0 +1,26 @@
+<section class="container">
+    <h1>Meme details page</h1>
+    <% memes.forEach(function(meme){ %> 
+    <table class="table" id="table">
+      <thead>
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">ID</th>
+          <th scope="col">url</th>
+          <th scope="col">Name</th>
+          <th scope="col">Dimensions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td><img class="mb-3" id="img" src="<%=meme.url%>" alt="memes"></td>  
+          <td id="id"><%=meme.id%></td>
+          <td id="url"><%=meme.url%></td>
+          <td id="name"><%=meme.name%></td>
+          <td id="dimensions">Height: <%=meme.height%> </br> Width: <%=meme.width%></td>
+        </tr>
+      </tbody>
+      <% });%>
+    </table>
+    <button class="hello" onclick="back()">Close</button></td>
+    </section>

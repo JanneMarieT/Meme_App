@@ -1,35 +1,57 @@
+var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var logger = require('morgan');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+
+var indexRouter = require('./routes/index');
+var homeRouter = require('./routes/index');
+var memeRouter = require('./routes/meme');
+var memesRouter = require('./routes/memes');
+var loginRouter = require('./routes/login');
+//var highlightsRouter = require('./routes/highlights'); 
+
 
 var app = express();
+var passport = require('passport')
+var session = require('express-session');
+var JsonStore = require('express-session-json')(session);
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname + '/node_modules/bootstrap/dist'));
+app.use(express.static(__dirname + '/node_modules/jquery/dist/'));
+app.use(express.static(__dirname + '/node_modules/axios/dist/'));
+app.use(express.static(__dirname + '/node_modules/bootstrap-icons'));
 
-app.use('/', index);
-app.use('/users', users);
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+  store: new JsonStore()
+}));
+app.use(passport.authenticate('session'));
+
+app.use('/', indexRouter);
+app.use('/home', homeRouter);
+app.use('/meme', memeRouter);
+app.use('/memes', memesRouter);
+app.use('/login', loginRouter);
+//app.use('/highlights', highlightsRouter); 
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+  next(createError(404));
 });
 
 // error handler

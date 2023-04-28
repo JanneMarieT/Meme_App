@@ -1,0 +1,39 @@
+#myInput {
+   
+    width: 50%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 3px solid rgb(11, 11, 11);; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+    border-radius: 20px;
+  }
+
+  .guest {
+    visibility: hidden;
+  }
+
+  .highlight {
+    background-color:rgb(249, 205, 205);
+ }
+
+ body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+table, tr, td {
+  border: 3px solid rgb(11, 11, 11);
+  border-radius: 5px;
+}
+
+#myBtn {
+    padding: 10px;
+    border-radius: 3px;
+    background: #d83f45;
+    color: white;
+    cursor: pointer;
+}
+
+img {
+  width: 20%;
+}

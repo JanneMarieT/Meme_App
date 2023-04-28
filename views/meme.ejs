@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Meme Overwiew</title>
+  <!-- css -->
+  <link href="../font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/meme/navbar.css" rel="stylesheet">
+  <link href="../css/meme/meme.css" rel="stylesheet">
+</head>
+
+<body class="position-relative" data-bs-spy="scroll">
+   <%- include('./partials/navbar.ejs', {user: user}) %>
+  <div data-spy="scroll" data-target="#navbar" data-offset="0">
+    <section class="container">
+      <%- include('./partials/meme.ejs', {memes: memes}) %>
+  </div>
+    </section>
+   <%- include('./partials/scripts.ejs') %>
+</body>
+<script>
+
+
+
+//This scripts should proabably be in a separate .js file buuuuut they are here for now (cause i cant make user work outside)
+
+//guest users cannot see details button
+  <% if (!user) { %>
+ $('#guest').addClass('guest') 
+ <%}%>
+
+//loged in users can see details button
+ <% if (user) { %>
+ $('#guest').removeClass('guest') 
+ <%}%>
+
+
+ //highlights row - but is not stored
+$(document).ready(function(){
+  $("button").on("click", function(){ 
+    $(this).closest("tr").addClass("highlight");
+
+      //tried session storage on highlight class but havent gotten it to work yet
+   /* if ($("tr").hasClass("highlight")){
+      var tr = $(this) 
+      console.log(tr)
+      sessionStorage.setItem("highlight", tr )
+    }
+    sessionStorage.getItem("highlight")
+    $(this).closest("tr").addClass("highlight");*/
+  })
+ 
+});
+
+//search bar
+function searchFunction() {
+
+  <% if (user) { %>
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue, url;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    	if (td) {
+      		txtValue = td.textContent || td.innerText;
+      		if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        		tr[i].style.display = "";
+        } else {
+        tr[i].style.display = "none";
+      	}
+      }
+	}
+  <%}%>
+
+  <% if (!user) { %>
+      // Declare variables
+  var input, filter, table, tr, td, i, txtValue, newText;
+  input = document.getElementById("myInput");
+  newText = document.getElementById("myInput").value; //this finds the textvalue
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    	if (td) {
+      		txtValue = td.textContent || td.innerText;
+      		if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        		tr[i].style.display = "";
+          } else {
+            if( newText.includes("https")){ //if u have an url txt this should bring you to the login page.
+              login()
+          } else{
+            tr[i].style.display = "none";
+      	}
+      }
+    } 
+	}
+  <%}%>
+}
+</script>
+
+</html>

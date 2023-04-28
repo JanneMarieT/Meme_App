@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Login</title>
+  <!-- css -->
+  <link href="../font/bootstrap-icons.css" rel="stylesheet" >
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/login/navbar.css" rel="stylesheet">
+  <link href="../css/login/login.css" rel="stylesheet">
+</head>
+
+<body class="position-relative" data-bs-spy="scroll">
+  <%- include('./partials/navbar.ejs', {user: user}) %>
+    <div data-spy="scroll" data-target="#navbar" data-offset="0">
+      <%- include('./partials/login.ejs') %>
+    </div>
+      <%- include('./partials/scripts.ejs') %>
+</body>
+  <script>
+
+    <% if (!user) { %>
+      $('#guest').addClass('guest') 
+    <%}%>
+    
+    <% if (user) { %>
+      $('#guest').removeClass('guest') 
+    <%}%>
+    
+  </script>
+</html>
