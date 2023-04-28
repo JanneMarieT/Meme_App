@@ -1,6 +1,5 @@
 <section class="container">
     <h1>Meme details page</h1>
-    <% memes.forEach(function(meme){ %> 
     <table class="table" id="table">
       <thead>
         <tr>
@@ -13,14 +12,13 @@
         </thead>
         <tbody>
         <tr>
-          <td><img class="mb-3" id="img" src="<%=meme.url%>" alt="memes"></td>  
-          <td id="id"><%=meme.id%></td>
-          <td id="url"><%=meme.url%></td>
-          <td id="name"><%=meme.name%></td>
-          <td id="dimensions">Height: <%=meme.height%> </br> Width: <%=meme.width%></td>
+          <td><img class="mb-3" id="img" src="<%=memes.url%>" alt="memes"></td>  
+          <td id="id"><%=memes.id%></td>
+          <td id="url"><%=memes.url%></td>
+          <td id="name"><%=memes.name%></td>
+          <td id="dimensions">Height: <%=memes.height%> </br> Width: <%=memes.width%></td>
         </tr>
       </tbody>
-      <% });%>
     </table>
     <button class="hello" onclick="back()">Close</button></td>
     </section>

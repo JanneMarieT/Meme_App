@@ -21,7 +21,7 @@
           <td scope="row"><button id="guest" class="guest" >Details</button></td>
           <% }%>
           <% if (user) { %>
-          <td scope="row"><button id="guest" onclick="open_new_window()">Details</button></td>
+          <td scope="row"><button class="meme-button" id="guest" data-meme-id="<%= meme.id %>" onclick="open_new_window('<%=meme.id%>')">Details</button></td>
           <% }%>
         </tr>
         <% });%>

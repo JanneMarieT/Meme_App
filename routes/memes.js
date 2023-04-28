@@ -3,8 +3,6 @@ var router = express.Router();
 const path = require('path');
 const fs = require("fs")
 var passport = require('passport')
-//var bodyParser = require('body-parser')
-//var jsonParser = bodyParser.json()
 
 
 passport.serializeUser(function(user, cb) {
@@ -19,22 +17,15 @@ passport.deserializeUser(function(user, cb) {
     });
   });
 
-router.get('/', function (req, res, next) {
-    let data = fs.readFileSync(path.resolve(__dirname, "../data/memes.json"));
-    res.render('memes', { memes: JSON.parse(data), user: req.user});
-});
 
-/*
-router.post('/memes', function(req, res, next) {
-  console.log(req.body)
-});*/
-/*
-router.post('/memes', function(req, res, next) {
-  const memeData = req.body.meme;
-  app.get('/meme' + memeData, (req, res) => {
-  res.render('memes', { memes: JSON.parse(memeData)});
+router.get('/:id', function(req, res, next) {
+  const memes = JSON.parse(fs.readFileSync(path.resolve(__dirname, "../data/memes.json")));
+  const meme = memes.find(meme => meme.id === req.params.id);
+  if (!meme) {
+    res.sendStatus(404);
+  } else {
+    res.render('memes', { memes: meme, user: req.user });
+  }
 });
-});*/
-
 
 module.exports = router;

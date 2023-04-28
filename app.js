@@ -36,7 +36,7 @@ app.use(express.static(__dirname + '/node_modules/bootstrap-icons'));
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   store: new JsonStore()
 }));
 app.use(passport.authenticate('session'));

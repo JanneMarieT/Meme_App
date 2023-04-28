@@ -1,0 +1,9 @@
+<section class="container">
+        <div class="container"> 
+      <% memes.forEach(function(meme){ %>
+        <div class="image-wrapper">
+        <a href="/memes/<%=meme.id%>"><img id="meme" class="mb-3" src="<%=meme.url%>" alt="memes"></a>
+        </div>
+        <% });%>
+        </div>
+  </section>

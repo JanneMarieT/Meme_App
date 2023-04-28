@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport')
+const path = require('path');
+const fs = require("fs")
 
 
 passport.serializeUser(function(user, cb) {
@@ -17,8 +19,8 @@ passport.deserializeUser(function(user, cb) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', {user: req.user});
+  let data = fs.readFileSync(path.resolve(__dirname, "../data/memes.json"));
+  res.render('index', { memes: JSON.parse(data), user: req.user});
 });
-
 
 module.exports = router;
