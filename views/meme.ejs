@@ -21,10 +21,6 @@
 </body>
 <script>
 
-
-
-//This scripts should proabably be in a separate .js file buuuuut they are here for now (cause i cant make user work outside)
-
 //guest users cannot see details button
   <% if (!user) { %>
  $('#guest').addClass('guest') 
@@ -35,29 +31,15 @@
  $('#guest').removeClass('guest') 
  <%}%>
 
-
- //highlights row - but is not stored
-/*$(document).ready(function(){
-  $("button").on("click", function(){ 
-    $(this).closest("tr").addClass("highlight");*/
-
-      //tried session storage on highlight class but havent gotten it to work yet
-   /* if ($("tr").hasClass("highlight")){
-      var tr = $(this) 
-      console.log(tr)
-      sessionStorage.setItem("highlight", tr )
-    }
-    sessionStorage.getItem("highlight")
-    $(this).closest("tr").addClass("highlight");*/
-  /*})
- 
-});*/
+//highlight
 $(document).ready(function(){
   $(".meme-button").on("click", function(){
     var memeId = $(this).data("meme-id");
     $.post("/meme/clicked", {memeId: memeId}, function(data) {
       if (data.success) {
         $(this).closest("tr").addClass("highlight");
+        // add the clicked meme id to the session
+        $.post("/meme/addClickedMemeId", {memeId: memeId});
       }
     }.bind(this));
   });

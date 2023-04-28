@@ -38,23 +38,11 @@ axios.get(getUrl)
 });
 
 
-    //reads the json file created onto the meme page
-/*router.get('/', function(req, res, next) {
-    var clickedMemeIds = req.session.clickedMemeIds || [];
-    let data = fs.readFileSync(path.resolve(__dirname, "../data/memes.json"));
-    let memes = JSON.parse(data);
-    memes.forEach(function(meme) {
-    meme.clicked = clickedMemeIds.indexOf(meme.id) >= 0;
-    });
-    res.render('meme', { memes: memes, user: req.user});
-});*/
-
 router.get('/', function(req, res, next) {
   var clickedMemeIds = req.session.clickedMemeIds || [];
-  let data = fs.readFileSync(path.resolve(__dirname, "../data/memes.json"));
-  var memes = JSON.parse(data);
+  var memes = JSON.parse(fs.readFileSync(path.resolve(__dirname, "../data/memes.json")));
   memes.forEach(function(meme) {
-    meme.clicked = clickedMemeIds.indexOf(meme.id.toString()) >= 0;
+    meme.clicked = clickedMemeIds.indexOf(meme.id) >= 0;
   });
   res.render('meme', { memes: memes, user: req.user });
 });
@@ -64,11 +52,20 @@ router.post('/clicked', function(req, res, next) {
   var memeId = req.body.memeId;
   if (clickedMemeIds.indexOf(memeId) < 0) {
     clickedMemeIds.push(memeId);
-    req.session.clickedMemeIds = clickedMemeIds;
-    res.json({success: true});
-  } else {
-    res.json({success: false});
   }
+  req.session.clickedMemeIds = clickedMemeIds;
+  res.json({success: true});
+});
+
+// add clicked meme id to session
+router.post('/addClickedMemeId', function(req, res, next) {
+  var clickedMemeIds = req.session.clickedMemeIds || [];
+  var memeId = req.body.memeId;
+  if (clickedMemeIds.indexOf(memeId) === -1) {
+    clickedMemeIds.push(memeId);
+  }
+  req.session.clickedMemeIds = clickedMemeIds;
+  res.sendStatus(200);
 });
    
 
