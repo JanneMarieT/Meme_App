@@ -64,8 +64,13 @@ _An detailed description on what the Meme web application does - (both outside a
 
 ## 100 Memes page:
 
+Where i make the api call to:
 https://api.imgflip.com/get_memes
 
+## Meme Web App
+
+deployed on render:
+https://memeapp.onrender.com/meme
 
 ## Contributing
 ME :) Yes me :)
